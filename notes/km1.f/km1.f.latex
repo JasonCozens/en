@@ -1,0 +1,4 @@
+\begin{array}{c|cc}
+    f & 0 & 1 \\\hline
+      & f(0) & f(1)
+\end{array}

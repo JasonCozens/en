@@ -1,0 +1,7 @@
+\begin{array}{c|cc}
+    x  & f(x)  \\\hline
+    00 & f(00) \\
+    01 & f(01) \\
+    10 & f(10) \\
+    11 & f(11)
+\end{array}

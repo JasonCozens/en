@@ -1,0 +1,5 @@
+\begin{array}{c|cc}
+    f & f(x) \\\hline
+    0 & f(0) \\
+    1 & f(1)
+\end{array}
