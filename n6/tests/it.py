@@ -21,24 +21,24 @@ from unittest import (
     TestLoader
     )
 
-from i import (I, S)
+from i import (Idea, S)
 
 class IT(TestCase):
 
     def test_new(self):
         # Act
-        i = I()
+        i = Idea()
         # Assert
-        self.assertEqual(i.l, I.O)
-        self.assertEqual(i.o, I.O)
-        self.assertEqual(i.r, I.O)
+        self.assertEqual(i.l, Idea.O)
+        self.assertEqual(i.o, Idea.O)
+        self.assertEqual(i.r, Idea.O)
 
 class ST(TestCase):
 
     def test_new(self):
         # Arrange
-        l = I()
-        r = I()
+        l = Idea()
+        r = Idea()
         # Act
         s = S(l, r)
         # Assert

@@ -15,13 +15,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-class I:
+class Idea:
 
      O = 'I'
 
      def __init__(self, l = O, r = O):
          self._l = l
-         self._o = I.O
+         self._o = Idea.O
          self._r = r
 
      @property
@@ -36,11 +36,11 @@ class I:
      def r(self):
           return self._r
          
-class S(I):
+class S(Idea):
 
      O = '!'
 
-     def __init__(self, l = I(), r = I()):
+     def __init__(self, l = Idea(), r = Idea()):
           super(S, self).__init__(l, r)
           self._o = S.O
 
