@@ -2,10 +2,13 @@
 #
 # Affero GPL
 #
-import unittest
+from unittest import (
+    TestSuite,
+    TextTestRunner,
+    )
 
 def alltests():
-    return unittest.TestSuite([
+    return TestSuite([
         ])
 
-unittest.TextTestRunner(verbosity = 2).run(alltests())
+TextTestRunner(verbosity = 2).run(alltests())
