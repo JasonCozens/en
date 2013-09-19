@@ -35,6 +35,11 @@ class Idea(object):
      @property
      def r(self):
           return self._r
+
+class I(Idea):
+
+     def __repr__(self):
+          return 'I()'
          
 class S(Idea):
 

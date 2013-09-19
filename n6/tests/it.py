@@ -21,17 +21,15 @@ from unittest import (
     TestLoader
     )
 
-from i import (Idea, S)
+from i import (Idea, I, S)
 
 class IT(TestCase):
 
-    def test_new(self):
-        # Act
-        i = Idea()
-        # Assert
-        self.assertEqual(i.l, Idea.O)
-        self.assertEqual(i.o, Idea.O)
-        self.assertEqual(i.r, Idea.O)
+    def test_repr(self):
+        # Act.
+        r = repr(I())
+        # Assert.
+        self.assertEqual(r, 'I()')
 
 class ST(TestCase):
 
