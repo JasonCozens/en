@@ -43,6 +43,9 @@ class I(Idea):
 
      def __str__(self):
           return 'I'
+
+     def __eq__(self, other):
+          return False
          
 class S(Idea):
 

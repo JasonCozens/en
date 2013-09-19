@@ -37,6 +37,12 @@ class IT(TestCase):
         # Assert.
         self.assertEqual(s, 'I')
 
+    def test_equal(self):
+        # Arrange.
+        i = I()
+        # Act & Assert.
+        self.assertEqual(i == i, False)
+
 class ST(TestCase):
 
     def test_new(self):
