@@ -52,11 +52,15 @@ class ITest(TestCase):
         
 class MockBOp(object):
 
-    def __init__(self, equal):
+    def __init__(self, equal, image = ""):
         self.__equal = equal
+        self.__repr = image
 
     def __eq__(self, other):
         return self.__equal
+
+    def __repr__(self):
+        return self.__repr
 
 class BOpTest(TestCase):
 
@@ -113,10 +117,22 @@ class BOpTest(TestCase):
         r2 = MockBOp(False)
         b2 = BOp('b', l1, r1)
         self.assertEqual(b1 == b2, False)
+
+class BOpReprTest(TestCase):
+
+    def test_repr(self):
+        # Arrange.
+        l = MockBOp(True, "L")
+        r = MockBOp(True, "R")
+        b = BOp("x", l, r)
+        expected = "BOp('x',L,R)"
+        # Assert.
+        self.assertEqual(repr(b), expected)
         
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(ITest),
         TestLoader().loadTestsFromTestCase(BOpTest),
+        TestLoader().loadTestsFromTestCase(BOpReprTest),
     ])
         
