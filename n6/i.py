@@ -52,7 +52,7 @@ class BOp(Idea):
             return True
         if type(other) != type(self):
              return False
-        return (other.l == self.l) # & (other.r == self.r)
+        return (other.l == self.l) & (other.r == self.r)
 
     def __repr__(self):
         return ''

@@ -23,7 +23,7 @@ from unittest import (
 
 from i import (Idea, I, BOp)
 
-class IT(TestCase):
+class ITest(TestCase):
 
     def test_eq_is_reflexive(self):
         # Arrange.
@@ -58,7 +58,7 @@ class MockBOp(object):
     def __eq__(self, other):
         return self.__equal
 
-class BOpT(TestCase):
+class BOpTest(TestCase):
 
     def test_eq_is_reflexive(self):
         # Arrange.
@@ -93,10 +93,20 @@ class BOpT(TestCase):
         r2 = MockBOp(True)
         b2 = BOp('B', 'b', l1, r1)
         self.assertEqual(b1 == b2, False)        
+
+    def test_eq_right_neq(self):
+        # Arrange.
+        l1 = MockBOp(True)
+        r1 = MockBOp(False)
+        b1 = BOp('B', 'b', l1, r1)
+        l2 = MockBOp(True)
+        r2 = MockBOp(False)
+        b2 = BOp('B', 'b', l1, r1)
+        self.assertEqual(b1 == b2, False)
         
 def alltests():
     return TestSuite([
-        TestLoader().loadTestsFromTestCase(IT),
-        TestLoader().loadTestsFromTestCase(BOpT),
+        TestLoader().loadTestsFromTestCase(ITest),
+        TestLoader().loadTestsFromTestCase(BOpTest),
     ])
         
