@@ -62,7 +62,7 @@ class BOpTest(TestCase):
 
     def test_eq_is_reflexive(self):
         # Arrange.
-        b = BOp('B', 'b', Idea(), Idea())
+        b = BOp('b', Idea(), Idea())
         # Act & Assert.
         self.assertEqual(b == b, True)
 
@@ -70,7 +70,7 @@ class BOpTest(TestCase):
         # Arrange.
         l1 = MockBOp(True)
         r1 = MockBOp(True)
-        b1 = BOp('B', 'b', l1, r1)
+        b1 = BOp('b', l1, r1)
         b2 = MockBOp(True)
         self.assertEqual(b1 == b2, False)
 
@@ -78,40 +78,40 @@ class BOpTest(TestCase):
         # Arrange.
         l1 = MockBOp(True)
         r1 = MockBOp(True)
-        b1 = BOp('B', 'b', l1, r1)
+        b1 = BOp('b', l1, r1)
         l2 = MockBOp(True)
         r2 = MockBOp(True)
-        b2 = BOp('B', 'b', l1, r1)
+        b2 = BOp('b', l1, r1)
         self.assertEqual(b1 == b2, True)
 
     def test_eq_left_neq(self):
         # Arrange.
         l1 = MockBOp(False)
         r1 = MockBOp(True)
-        b1 = BOp('B', 'b', l1, r1)
+        b1 = BOp('b', l1, r1)
         l2 = MockBOp(False)
         r2 = MockBOp(True)
-        b2 = BOp('B', 'b', l1, r1)
+        b2 = BOp('b', l1, r1)
         self.assertEqual(b1 == b2, False)        
 
     def test_eq_right_neq(self):
         # Arrange.
         l1 = MockBOp(True)
         r1 = MockBOp(False)
-        b1 = BOp('B', 'b', l1, r1)
+        b1 = BOp('b', l1, r1)
         l2 = MockBOp(True)
         r2 = MockBOp(False)
-        b2 = BOp('B', 'b', l1, r1)
+        b2 = BOp('b', l1, r1)
         self.assertEqual(b1 == b2, False)
 
     def test_eq_left_and_right_neq(self):
         # Arrange.
         l1 = MockBOp(False)
         r1 = MockBOp(False)
-        b1 = BOp('B', 'b', l1, r1)
+        b1 = BOp('b', l1, r1)
         l2 = MockBOp(False)
         r2 = MockBOp(False)
-        b2 = BOp('B', 'b', l1, r1)
+        b2 = BOp('b', l1, r1)
         self.assertEqual(b1 == b2, False)
         
 def alltests():

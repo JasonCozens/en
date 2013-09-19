@@ -41,8 +41,7 @@ class BOp(Idea):
     def r(self):
         return self.__r
 
-    def __init__(self, B, b, l, r):
-        self.__B = B
+    def __init__(self, b, l, r):
         self.__l = l
         self.__b = b
         self.__r = r
