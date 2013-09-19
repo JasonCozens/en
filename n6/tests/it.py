@@ -52,11 +52,11 @@ class IT(TestCase):
         
 class MockBOp(object):
 
-    def __init__(self, repr):
-        self.__repr = repr
+    def __init__(self, equal):
+        self.__equal = equal
 
     def __eq__(self, other):
-        return self.__repr
+        return self.__equal
 
 class BOpT(TestCase):
 
@@ -65,6 +65,24 @@ class BOpT(TestCase):
         b = BOp('B', 'b', Idea(), Idea())
         # Act & Assert.
         self.assertEqual(b == b, True)
+
+    def test_neq_different_types(self):
+        # Arrange.
+        l1 = MockBOp(True)
+        r1 = MockBOp(True)
+        b1 = BOp('B', 'b', l1, r1)
+        b2 = MockBOp(True)
+        self.assertEqual(b1 == b2, False)
+
+    def test_eq(self):
+        # Arrange.
+        l1 = MockBOp(True)
+        r1 = MockBOp(True)
+        b1 = BOp('B', 'b', l1, r1)
+        l2 = MockBOp(True)
+        r2 = MockBOp(True)
+        b2 = BOp('B', 'b', l1, r1)
+        self.assertEqual(b1 == b2, True)
         
 def alltests():
     return TestSuite([

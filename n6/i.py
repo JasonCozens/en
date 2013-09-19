@@ -44,11 +44,26 @@ class I(Idea):
 
 class BOp(Idea):
 
+    @property
+    def l(self):
+        return self.__l
+
+    @property
+    def r(self):
+        return self.__r
+
     def __init__(self, B, b, l, r):
         self.__B = B
         self.__l = l
         self.__b = b
         self.__r = r
+
+    def __eq__(self, other):
+        if other is self:
+            return True
+        if type(other) != type(self):
+             return False
+        return (other.l == self.l) & (other.r == self.r)
 
     def __repr__(self):
         return ''
