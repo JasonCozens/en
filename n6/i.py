@@ -26,10 +26,10 @@ class I(Idea):
         return type(other) == I
      
     def __repr__(self):
-        return 'I()'
+        return type(self).__name__ + '()'
 
     def __str__(self):
-        return 'I'
+        return type(self).__name__
 
 class BOp(Idea):
 
