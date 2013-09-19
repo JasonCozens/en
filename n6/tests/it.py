@@ -138,11 +138,22 @@ class BOpReprTest(TestCase):
         # Assert.
         self.assertEqual(r, "BOp('x',I(),I())")
         self.assertEqual(e, b)
+
+class BOpStrTest(TestCase):
+
+    def test_str(self):
+        # Arrange.
+        b = BOp('x', I(), I())
+        # Act.
+        s = str(b)
+        # Assert.
+        self.assertEqual(s, "(IxI)")
         
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(ITest),
         TestLoader().loadTestsFromTestCase(BOpTest),
         TestLoader().loadTestsFromTestCase(BOpReprTest),
+        TestLoader().loadTestsFromTestCase(BOpStrTest),
     ])
         

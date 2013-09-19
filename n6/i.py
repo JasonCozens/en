@@ -60,7 +60,9 @@ class BOp(Idea):
                + repr(self.__l) + "," \
                + repr(self.__r) \
                + ")"
-    
+
+    def __str__(self):
+        return "(" + str(self.l) + self.__b + str(self.r) + ")"
 
 
 
