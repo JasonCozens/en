@@ -25,16 +25,16 @@ from i import (Idea, I, BOp)
 
 class IT(TestCase):
 
-    def test_equal_is_reflexive(self):
+    def test_eq_is_reflexive(self):
         # Arrange.
         i = I()
         # Act & Assert.
         self.assertEqual(i == i, True)
 
-    def test_equal(self):
+    def test_eq(self):
         self.assertEqual(I() == I(), True)
 
-    def test_not_equal(self):
+    def test_not_eq(self):
         self.assertEqual(I() == Idea(), False)
 
     def test_repr(self):
@@ -55,20 +55,16 @@ class MockBOp(object):
     def __init__(self, repr):
         self.__repr = repr
 
-    def __repr__(self):
+    def __eq__(self, other):
         return self.__repr
 
 class BOpT(TestCase):
 
-    def test_repr(self):
+    def test_eq_is_reflexive(self):
         # Arrange.
-        l = MockBOp('l')
-        r = MockBOp('r')
-        b = BOp('B', 'b', l, r)
-        # Act.
-        rep = repr(b)
-        # Assert.
-        self.assertEqual(rep, 'B(l,r)')
+        b = BOp('B', 'b', Idea(), Idea())
+        # Act & Assert.
+        self.assertEqual(b == b, True)
         
 def alltests():
     return TestSuite([
