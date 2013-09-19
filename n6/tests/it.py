@@ -83,6 +83,16 @@ class BOpT(TestCase):
         r2 = MockBOp(True)
         b2 = BOp('B', 'b', l1, r1)
         self.assertEqual(b1 == b2, True)
+
+    def test_eq_left_neq(self):
+        # Arrange.
+        l1 = MockBOp(False)
+        r1 = MockBOp(True)
+        b1 = BOp('B', 'b', l1, r1)
+        l2 = MockBOp(False)
+        r2 = MockBOp(True)
+        b2 = BOp('B', 'b', l1, r1)
+        self.assertEqual(b1 == b2, False)        
         
 def alltests():
     return TestSuite([

@@ -17,17 +17,17 @@
 #
 class Idea(object):
 
-     @property
-     def l(self):
-          return self._l
+    @property
+    def l(self):
+        return self._l
 
-     @property
-     def o(self):
-          return self._o
+    @property
+    def o(self):
+        return self._o
 
-     @property
-     def r(self):
-          return self._r
+    @property
+    def r(self):
+        return self._r
 
 class I(Idea):
 
@@ -63,7 +63,7 @@ class BOp(Idea):
             return True
         if type(other) != type(self):
              return False
-        return (other.l == self.l) & (other.r == self.r)
+        return (other.l == self.l) # & (other.r == self.r)
 
     def __repr__(self):
         return ''
