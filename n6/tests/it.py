@@ -25,18 +25,6 @@ from i import (Idea, I, BOp)
 
 class IT(TestCase):
 
-    def test_repr(self):
-        # Act.
-        r = repr(I())
-        # Assert.
-        self.assertEqual(r, 'I()')
-
-    def test_str(self):
-        # Act.
-        s = str(I())
-        # Assert.
-        self.assertEqual(s, 'I')
-
     def test_equal_is_reflexive(self):
         # Arrange.
         i = I()
@@ -49,6 +37,19 @@ class IT(TestCase):
     def test_not_equal(self):
         self.assertEqual(I() == Idea(), False)
 
+    def test_repr(self):
+        # Act.
+        r = repr(I())
+        # Assert.
+        self.assertEqual(r, 'I()')
+        self.assertEqual(type(eval(r)), I)
+
+    def test_str(self):
+        # Act.
+        s = str(I())
+        # Assert.
+        self.assertEqual(s, 'I')
+        
 class MockBOp(object):
 
     def __init__(self, repr):

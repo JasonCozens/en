@@ -31,16 +31,16 @@ class Idea(object):
 
 class I(Idea):
 
+    def __eq__(self, other):
+        if other is self:
+            return True
+        return type(other) == I
+     
     def __repr__(self):
         return 'I()'
 
     def __str__(self):
         return 'I'
-
-    def __eq__(self, other):
-        if other is self:
-            return True
-        return type(other) == I
 
 class BOp(Idea):
 
