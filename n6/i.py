@@ -54,15 +54,11 @@ class BOp(Idea):
         return (other.l == self.l) & (other.r == self.r)
 
     def __repr__(self):
-        return type(self).__name__ \
-               + "(" \
-               + "'" + self.__b + "'," \
-               + repr(self.__l) + "," \
-               + repr(self.__r) \
-               + ")"
+        return "{0}('{1}',{2},{3})".format( \
+            type(self).__name__, self.__b, repr(self.__l), repr(self.__r))
 
     def __str__(self):
-        return "(" + str(self.l) + self.__b + str(self.r) + ")"
+        return "({0}{1}{2})".format(str(self.l), self.__b, str(self.r))
 
 
 
