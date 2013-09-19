@@ -31,6 +31,12 @@ class IT(TestCase):
         # Assert.
         self.assertEqual(r, 'I()')
 
+    def test_str(self):
+        # Act.
+        s = str(I())
+        # Assert.
+        self.assertEqual(s, 'I')
+
 class ST(TestCase):
 
     def test_new(self):

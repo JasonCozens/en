@@ -40,6 +40,9 @@ class I(Idea):
 
      def __repr__(self):
           return 'I()'
+
+     def __str__(self):
+          return 'I'
          
 class S(Idea):
 
