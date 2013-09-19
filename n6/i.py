@@ -17,13 +17,6 @@
 #
 class Idea(object):
 
-     O = 'I'
-
-     def __init__(self, l = O, r = O):
-         self._l = l
-         self._o = Idea.O
-         self._r = r
-
      @property
      def l(self):
           return self._l
@@ -38,23 +31,27 @@ class Idea(object):
 
 class I(Idea):
 
-     def __repr__(self):
-          return 'I()'
+    def __repr__(self):
+        return 'I()'
 
-     def __str__(self):
-          return 'I'
+    def __str__(self):
+        return 'I'
 
-     def __eq__(self, other):
-          if other is self:
-               return False
-          return type(other) == I
-         
-class S(Idea):
+    def __eq__(self, other):
+        if other is self:
+            return True
+        return type(other) == I
 
-     O = '!'
+class BOp(Idea):
 
-     def __init__(self, l = Idea(), r = Idea()):
-          super(S, self).__init__(l, r)
-          self._o = S.O
+    def __init__(self, B, b, l, r):
+        self.__B = B
+        self.__l = l
+        self.__b = b
+        self.__r = r
+
+    def __repr__(self):
+        return ''
+
 
 

@@ -21,7 +21,7 @@ from unittest import (
     TestLoader
     )
 
-from i import (Idea, I, S)
+from i import (Idea, I, BOp)
 
 class IT(TestCase):
 
@@ -37,35 +37,41 @@ class IT(TestCase):
         # Assert.
         self.assertEqual(s, 'I')
 
-    def test_equal_is_not_reflexive(self):
+    def test_equal_is_reflexive(self):
         # Arrange.
         i = I()
         # Act & Assert.
-        self.assertEqual(i == i, False)
+        self.assertEqual(i == i, True)
 
     def test_equal(self):
         self.assertEqual(I() == I(), True)
 
     def test_not_equal(self):
         self.assertEqual(I() == Idea(), False)
+
+class MockBOp(object):
+
+    def __init__(self, repr):
+        self.__repr = repr
+
+    def __repr__(self):
+        return self.__repr
+
+class BOpT(TestCase):
+
+    def test_repr(self):
+        # Arrange.
+        l = MockBOp('l')
+        r = MockBOp('r')
+        b = BOp('B', 'b', l, r)
+        # Act.
+        rep = repr(b)
+        # Assert.
+        self.assertEqual(rep, 'B(l,r)')
         
-
-class ST(TestCase):
-
-    def test_new(self):
-        # Arrange
-        l = Idea()
-        r = Idea()
-        # Act
-        s = S(l, r)
-        # Assert
-        self.assertEqual(s.l, l)
-        self.assertEqual(s.o, S.O)
-        self.assertEqual(s.r, r)        
-
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(IT),
-        TestLoader().loadTestsFromTestCase(ST),
+        TestLoader().loadTestsFromTestCase(BOpT),
     ])
         
