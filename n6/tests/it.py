@@ -37,11 +37,18 @@ class IT(TestCase):
         # Assert.
         self.assertEqual(s, 'I')
 
-    def test_equal(self):
+    def test_equal_is_not_reflexive(self):
         # Arrange.
         i = I()
         # Act & Assert.
         self.assertEqual(i == i, False)
+
+    def test_equal(self):
+        self.assertEqual(I() == I(), True)
+
+    def test_not_equal(self):
+        self.assertEqual(I() == Idea(), False)
+        
 
 class ST(TestCase):
 

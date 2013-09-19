@@ -45,7 +45,9 @@ class I(Idea):
           return 'I'
 
      def __eq__(self, other):
-          return False
+          if other is self:
+               return False
+          return type(other) == I
          
 class S(Idea):
 
