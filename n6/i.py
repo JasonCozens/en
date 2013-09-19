@@ -16,18 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Idea(object):
-
-    @property
-    def l(self):
-        return self._l
-
-    @property
-    def o(self):
-        return self._o
-
-    @property
-    def r(self):
-        return self._r
+    pass
 
 class I(Idea):
 
