@@ -128,6 +128,16 @@ class BOpReprTest(TestCase):
         expected = "BOp('x',L,R)"
         # Assert.
         self.assertEqual(repr(b), expected)
+
+    def test_repr_check(self):
+        # Arrange.
+        b = BOp('x', I(), I())
+        # Act.
+        r = repr(b)
+        e = eval(r)
+        # Assert.
+        self.assertEqual(r, "BOp('x',I(),I())")
+        self.assertEqual(e, b)
         
 def alltests():
     return TestSuite([
