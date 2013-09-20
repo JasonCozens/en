@@ -170,6 +170,21 @@ class BEStrTest(TestCase):
         # Assert.
         self.assertEqual(s, "(IBEI)")
 
+class BESubstTest(TestCase):
+
+    def test_var_neq(self):
+        # Arrange.
+        l = Idea()
+        r = Idea()
+        b = BE(l, r)
+        # Act.
+        s = b.subst(Idea(), Idea())
+        # Assert.
+        self.assertIsNot(s, b)
+        self.assertIsNot(s.l, l)
+        self.assertIsNot(s.r, r)
+        self.assertEqual(s, b)
+
 class STest(TestCase):
 
     def test_repr(self):
@@ -197,6 +212,7 @@ def alltests():
         TestLoader().loadTestsFromTestCase(BETest),
         TestLoader().loadTestsFromTestCase(BEReprTest),
         TestLoader().loadTestsFromTestCase(BEStrTest),
+        TestLoader().loadTestsFromTestCase(BESubstTest),
         TestLoader().loadTestsFromTestCase(STest),
     ])
         

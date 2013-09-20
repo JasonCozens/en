@@ -68,6 +68,9 @@ class BE(Idea):
     def __str__(self):
         return "({0}{1}{2})".format(str(self.l), type(self).__name__, str(self.r))
 
+    def subst(self, expr, var):
+        return deepcopy(self)
+
 class S(BE):
 
     def __init__(self, l, r):
