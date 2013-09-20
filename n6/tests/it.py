@@ -66,7 +66,7 @@ class BETest(TestCase):
 
     def test_eq_is_reflexive(self):
         # Arrange.
-        b = BE('b', Idea(), Idea())
+        b = BE(Idea(), Idea())
         # Act & Assert.
         self.assertEqual(b == b, True)
 
@@ -74,7 +74,7 @@ class BETest(TestCase):
         # Arrange.
         l1 = MockBE(True)
         r1 = MockBE(True)
-        b1 = BE('b', l1, r1)
+        b1 = BE(l1, r1)
         b2 = MockBE(True)
         self.assertEqual(b1 == b2, False)
 
@@ -82,40 +82,40 @@ class BETest(TestCase):
         # Arrange.
         l1 = MockBE(True)
         r1 = MockBE(True)
-        b1 = BE('b', l1, r1)
+        b1 = BE(l1, r1)
         l2 = MockBE(True)
         r2 = MockBE(True)
-        b2 = BE('b', l1, r1)
+        b2 = BE(l1, r1)
         self.assertEqual(b1 == b2, True)
 
     def test_eq_left_neq(self):
         # Arrange.
         l1 = MockBE(False)
         r1 = MockBE(True)
-        b1 = BE('b', l1, r1)
+        b1 = BE(l1, r1)
         l2 = MockBE(False)
         r2 = MockBE(True)
-        b2 = BE('b', l1, r1)
+        b2 = BE(l1, r1)
         self.assertEqual(b1 == b2, False)        
 
     def test_eq_right_neq(self):
         # Arrange.
         l1 = MockBE(True)
         r1 = MockBE(False)
-        b1 = BE('b', l1, r1)
+        b1 = BE(l1, r1)
         l2 = MockBE(True)
         r2 = MockBE(False)
-        b2 = BE('b', l1, r1)
+        b2 = BE(l1, r1)
         self.assertEqual(b1 == b2, False)
 
     def test_eq_left_and_right_neq(self):
         # Arrange.
         l1 = MockBE(False)
         r1 = MockBE(False)
-        b1 = BE('b', l1, r1)
+        b1 = BE(l1, r1)
         l2 = MockBE(False)
         r2 = MockBE(False)
-        b2 = BE('b', l1, r1)
+        b2 = BE(l1, r1)
         self.assertEqual(b1 == b2, False)
 
 class BEReprTest(TestCase):
@@ -124,30 +124,30 @@ class BEReprTest(TestCase):
         # Arrange.
         l = MockBE(True, "L")
         r = MockBE(True, "R")
-        b = BE("x", l, r)
-        expected = "BE('x',L,R)"
+        b = BE(l, r)
+        expected = "BE(L,R)"
         # Assert.
         self.assertEqual(repr(b), expected)
 
     def test_repr_check(self):
         # Arrange.
-        b = BE('x', I(), I())
+        b = BE(I(), I())
         # Act.
         r = repr(b)
         e = eval(r)
         # Assert.
-        self.assertEqual(r, "BE('x',I(),I())")
+        self.assertEqual(r, "BE(I(),I())")
         self.assertEqual(e, b)
 
 class BEStrTest(TestCase):
 
     def test_str(self):
         # Arrange.
-        b = BE('x', I(), I())
+        b = BE(I(), I())
         # Act.
         s = str(b)
         # Assert.
-        self.assertEqual(s, "(IxI)")
+        self.assertEqual(s, "(IBEI)")
 
 class STest(TestCase):
 
@@ -167,7 +167,7 @@ class STest(TestCase):
         # Act.
         s = str(b)
         # Assert.
-        self.assertEqual(s, "(I!I)")        
+        self.assertEqual(s, "(ISI)")        
         
 def alltests():
     return TestSuite([
