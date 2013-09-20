@@ -209,7 +209,21 @@ class BESubstTest(TestCase):
         self.assertIsNot(s, b)
         self.assertIsNot(s.l, l)
         self.assertIsNot(s.r, r)
-        self.assertEqual(s, BE(Idea(), Idea()))        
+        self.assertEqual(s, BE(Idea(), Idea()))
+
+    def test_var_neq_req(self):
+        # Arrange.
+        l = Idea()
+        r = BE(Idea(), Idea())
+        b = BE(l, r)
+        e = Idea()
+        # Act.
+        s = b.subst(e, BE(Idea(), Idea()))
+        # Assert.
+        self.assertIsNot(s, b)
+        self.assertIsNot(s.l, l)
+        self.assertIsNot(s.r, r)
+        self.assertEqual(s, BE(Idea(), Idea()))
 
 class STest(TestCase):
 

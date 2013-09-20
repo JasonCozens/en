@@ -72,9 +72,7 @@ class BE(Idea):
     def subst(self, expr, var):
         if self == var:
             return deepcopy(expr)
-        if self.l == var:
-            return type(self)(self.l.subst(expr, var), deepcopy(self.r))
-        return deepcopy(self)
+        return type(self)(self.l.subst(expr, var), self.r.subst(expr, var))
 
 class S(BE):
 
