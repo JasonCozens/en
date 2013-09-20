@@ -60,6 +60,16 @@ class ISubstTest(TestCase):
         # Assert.
         self.assertIsNot(s, i)
         self.assertEqual(s, i)
+
+    def test_var_eq(self):
+        # Arrange.
+        i = I()
+        id = Idea()
+        # Act.
+        s = i.subst(id, I())
+        # Assert.
+        self.assertIsNot(s, id)
+        self.assertEqual(s, id)
         
 class MockBE(object):
 

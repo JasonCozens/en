@@ -22,12 +22,12 @@ from copy import (
 class Idea(object):
     pass
 
-class I(Idea):
-
     def __eq__(self, other):
         if other is self:
             return True
-        return type(other) == I
+        return type(other) == type(self)
+
+class I(Idea):
      
     def __repr__(self):
         return type(self).__name__ + '()'
@@ -36,6 +36,8 @@ class I(Idea):
         return type(self).__name__
 
     def subst(self, expr, var):
+        if self == var:
+            return deepcopy(expr)
         return deepcopy(self)
 
 class BE(Idea):
