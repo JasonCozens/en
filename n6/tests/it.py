@@ -49,6 +49,17 @@ class ITest(TestCase):
         s = str(I())
         # Assert.
         self.assertEqual(s, 'I')
+
+class ISubstTest(TestCase):
+
+    def test_var_neq(self):
+        # Arrange.
+        i = I()
+        # Act.
+        s = i.subst(Idea(), Idea())
+        # Assert.
+        self.assertIsNot(s, i)
+        self.assertEqual(s, i)
         
 class MockBE(object):
 
@@ -172,6 +183,7 @@ class STest(TestCase):
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(ITest),
+        TestLoader().loadTestsFromTestCase(ISubstTest),
         TestLoader().loadTestsFromTestCase(BETest),
         TestLoader().loadTestsFromTestCase(BEReprTest),
         TestLoader().loadTestsFromTestCase(BEStrTest),

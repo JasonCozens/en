@@ -15,6 +15,10 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+from copy import (
+    deepcopy,
+    )
+
 class Idea(object):
     pass
 
@@ -30,6 +34,9 @@ class I(Idea):
 
     def __str__(self):
         return type(self).__name__
+
+    def subst(self, expr, var):
+        return deepcopy(self)
 
 class BE(Idea):
 
