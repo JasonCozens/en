@@ -31,7 +31,7 @@ class I(Idea):
     def __str__(self):
         return type(self).__name__
 
-class BOp(Idea):
+class BE(Idea):
 
     @property
     def l(self):
@@ -59,6 +59,12 @@ class BOp(Idea):
 
     def __str__(self):
         return "({0}{1}{2})".format(str(self.l), self.__b, str(self.r))
+
+class S(BE):
+
+    def __init__(self, l, r):
+        super().__init__('!', l, r)
+
 
 
 

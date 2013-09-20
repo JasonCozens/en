@@ -21,7 +21,7 @@ from unittest import (
     TestLoader
     )
 
-from i import (Idea, I, BOp)
+from i import (Idea, I, BE, S)
 
 class ITest(TestCase):
 
@@ -50,7 +50,7 @@ class ITest(TestCase):
         # Assert.
         self.assertEqual(s, 'I')
         
-class MockBOp(object):
+class MockBE(object):
 
     def __init__(self, equal, image = ""):
         self.__equal = equal
@@ -62,98 +62,119 @@ class MockBOp(object):
     def __repr__(self):
         return self.__repr
 
-class BOpTest(TestCase):
+class BETest(TestCase):
 
     def test_eq_is_reflexive(self):
         # Arrange.
-        b = BOp('b', Idea(), Idea())
+        b = BE('b', Idea(), Idea())
         # Act & Assert.
         self.assertEqual(b == b, True)
 
     def test_neq_different_types(self):
         # Arrange.
-        l1 = MockBOp(True)
-        r1 = MockBOp(True)
-        b1 = BOp('b', l1, r1)
-        b2 = MockBOp(True)
+        l1 = MockBE(True)
+        r1 = MockBE(True)
+        b1 = BE('b', l1, r1)
+        b2 = MockBE(True)
         self.assertEqual(b1 == b2, False)
 
     def test_eq(self):
         # Arrange.
-        l1 = MockBOp(True)
-        r1 = MockBOp(True)
-        b1 = BOp('b', l1, r1)
-        l2 = MockBOp(True)
-        r2 = MockBOp(True)
-        b2 = BOp('b', l1, r1)
+        l1 = MockBE(True)
+        r1 = MockBE(True)
+        b1 = BE('b', l1, r1)
+        l2 = MockBE(True)
+        r2 = MockBE(True)
+        b2 = BE('b', l1, r1)
         self.assertEqual(b1 == b2, True)
 
     def test_eq_left_neq(self):
         # Arrange.
-        l1 = MockBOp(False)
-        r1 = MockBOp(True)
-        b1 = BOp('b', l1, r1)
-        l2 = MockBOp(False)
-        r2 = MockBOp(True)
-        b2 = BOp('b', l1, r1)
+        l1 = MockBE(False)
+        r1 = MockBE(True)
+        b1 = BE('b', l1, r1)
+        l2 = MockBE(False)
+        r2 = MockBE(True)
+        b2 = BE('b', l1, r1)
         self.assertEqual(b1 == b2, False)        
 
     def test_eq_right_neq(self):
         # Arrange.
-        l1 = MockBOp(True)
-        r1 = MockBOp(False)
-        b1 = BOp('b', l1, r1)
-        l2 = MockBOp(True)
-        r2 = MockBOp(False)
-        b2 = BOp('b', l1, r1)
+        l1 = MockBE(True)
+        r1 = MockBE(False)
+        b1 = BE('b', l1, r1)
+        l2 = MockBE(True)
+        r2 = MockBE(False)
+        b2 = BE('b', l1, r1)
         self.assertEqual(b1 == b2, False)
 
     def test_eq_left_and_right_neq(self):
         # Arrange.
-        l1 = MockBOp(False)
-        r1 = MockBOp(False)
-        b1 = BOp('b', l1, r1)
-        l2 = MockBOp(False)
-        r2 = MockBOp(False)
-        b2 = BOp('b', l1, r1)
+        l1 = MockBE(False)
+        r1 = MockBE(False)
+        b1 = BE('b', l1, r1)
+        l2 = MockBE(False)
+        r2 = MockBE(False)
+        b2 = BE('b', l1, r1)
         self.assertEqual(b1 == b2, False)
 
-class BOpReprTest(TestCase):
+class BEReprTest(TestCase):
 
     def test_repr(self):
         # Arrange.
-        l = MockBOp(True, "L")
-        r = MockBOp(True, "R")
-        b = BOp("x", l, r)
-        expected = "BOp('x',L,R)"
+        l = MockBE(True, "L")
+        r = MockBE(True, "R")
+        b = BE("x", l, r)
+        expected = "BE('x',L,R)"
         # Assert.
         self.assertEqual(repr(b), expected)
 
     def test_repr_check(self):
         # Arrange.
-        b = BOp('x', I(), I())
+        b = BE('x', I(), I())
         # Act.
         r = repr(b)
         e = eval(r)
         # Assert.
-        self.assertEqual(r, "BOp('x',I(),I())")
+        self.assertEqual(r, "BE('x',I(),I())")
         self.assertEqual(e, b)
 
-class BOpStrTest(TestCase):
+class BEStrTest(TestCase):
 
     def test_str(self):
         # Arrange.
-        b = BOp('x', I(), I())
+        b = BE('x', I(), I())
         # Act.
         s = str(b)
         # Assert.
         self.assertEqual(s, "(IxI)")
+
+class STest(TestCase):
+
+    def test_repr(self):
+       # Arrange.
+        s = S(I(), I())
+        # Act.
+        r = repr(s)
+        e = eval(r)
+        # Assert.
+        self.assertEqual(r, "S(I(),I())")
+        self.assertEqual(e, s)
+
+    def test_str(self):
+        # Arrange.
+        b = S(I(), I())
+        # Act.
+        s = str(b)
+        # Assert.
+        self.assertEqual(s, "(I!I)")        
         
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(ITest),
-        TestLoader().loadTestsFromTestCase(BOpTest),
-        TestLoader().loadTestsFromTestCase(BOpReprTest),
-        TestLoader().loadTestsFromTestCase(BOpStrTest),
+        TestLoader().loadTestsFromTestCase(BETest),
+        TestLoader().loadTestsFromTestCase(BEReprTest),
+        TestLoader().loadTestsFromTestCase(BEStrTest),
+        TestLoader().loadTestsFromTestCase(STest),
     ])
         
