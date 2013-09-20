@@ -26,6 +26,11 @@ class Idea(object):
         if other is self:
             return True
         return type(other) == type(self)
+    
+    def subst(self, expr, var):
+        if self == var:
+            return deepcopy(expr)
+        return deepcopy(self)
 
 class I(Idea):
      
@@ -35,10 +40,6 @@ class I(Idea):
     def __str__(self):
         return type(self).__name__
 
-    def subst(self, expr, var):
-        if self == var:
-            return deepcopy(expr)
-        return deepcopy(self)
 
 class BE(Idea):
 
@@ -70,7 +71,9 @@ class BE(Idea):
 
     def subst(self, expr, var):
         if self == var:
-            return deepcopy(expr)      
+            return deepcopy(expr)
+        if self.l == var:
+            return type(self)(self.l.subst(expr, var), deepcopy(self.r))
         return deepcopy(self)
 
 class S(BE):

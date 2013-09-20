@@ -172,6 +172,18 @@ class BEStrTest(TestCase):
 
 class BESubstTest(TestCase):
 
+    def test_var_eq(self):
+        # Arrange.
+        l = Idea()
+        r = Idea()
+        b = BE(l, r)
+        v = BE(Idea(), Idea())
+        e = Idea()
+        # Act.
+        s = b.subst(Idea(), v)
+        # Assert.
+        self.assertEqual(s, e)
+        
     def test_var_neq(self):
         # Arrange.
         l = Idea()
@@ -185,17 +197,19 @@ class BESubstTest(TestCase):
         self.assertIsNot(s.r, r)
         self.assertEqual(s, b)
 
-    def test_var_eq(self):
+    def test_var_neq_leq(self):
         # Arrange.
-        l = Idea()
+        l = BE(Idea(), Idea())
         r = Idea()
         b = BE(l, r)
-        v = BE(Idea(), Idea())
         e = Idea()
         # Act.
-        s = b.subst(Idea(), v)
+        s = b.subst(e, BE(Idea(), Idea()))
         # Assert.
-        self.assertEqual(s, e)        
+        self.assertIsNot(s, b)
+        self.assertIsNot(s.l, l)
+        self.assertIsNot(s.r, r)
+        self.assertEqual(s, BE(Idea(), Idea()))        
 
 class STest(TestCase):
 
