@@ -185,6 +185,18 @@ class BESubstTest(TestCase):
         self.assertIsNot(s.r, r)
         self.assertEqual(s, b)
 
+    def test_var_eq(self):
+        # Arrange.
+        l = Idea()
+        r = Idea()
+        b = BE(l, r)
+        v = BE(Idea(), Idea())
+        e = Idea()
+        # Act.
+        s = b.subst(Idea(), v)
+        # Assert.
+        self.assertEqual(s, e)        
+
 class STest(TestCase):
 
     def test_repr(self):

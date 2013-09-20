@@ -69,6 +69,8 @@ class BE(Idea):
         return "({0}{1}{2})".format(str(self.l), type(self).__name__, str(self.r))
 
     def subst(self, expr, var):
+        if self == var:
+            return deepcopy(expr)      
         return deepcopy(self)
 
 class S(BE):
