@@ -75,10 +75,20 @@ class BE(Idea):
         return type(self)(self.l.subst(expr, var), self.r.subst(expr, var))
 
 class S(BE):
-
-    def __init__(self, l, r):
-        super().__init__(l, r)
-
-
-
+    pass
+        
+class O(BE):
+    pass
+        
+class R(BE):
+    pass
+        
+class T(BE):
+    pass
+        
+class E(BE):
+    pass
+        
+class D(BE):
+    pass
 
