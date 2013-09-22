@@ -20,13 +20,13 @@ from unittest import (
     TextTestRunner,
     )
 
-import tests.it
-import tests.iextest
+import tests.ideatest
+import tests.excitetest
 
 def alltests():
     return TestSuite([
-        tests.it.alltests(),
-        tests.iextest.alltests(),
+        tests.ideatest.alltests(),
+        tests.excitetest.alltests(),
         ])
 
 TextTestRunner(verbosity = 2).run(alltests())
