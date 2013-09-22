@@ -25,10 +25,11 @@ from i import (
     I,
     BE,
     S,
+    R,
     T,
     )
 
-class SExTest(TestCase):
+class SExciteTest(TestCase):
 
     def test_excite_node(self):
         # Arrange.
@@ -65,7 +66,25 @@ class SExTest(TestCase):
         self.assertEqual(len(ex), 1)
         self.assertEqual(ex[repr(l)], T(r,I()))
 
+class MockIdea():
+
+    def __init__(self):
+        pass
+
+class RExciteTest(TestCase):
+
+    def test_excite(self):
+        # Arrange.
+        x = MockIdea()
+        y = MockIdea()
+        r = R(x,y)
+        # Act.
+        excited = r.excite()
+        # Assert.
+        self.assertEqual(excited, {})
+
 def alltests():
     return TestSuite([
-        TestLoader().loadTestsFromTestCase(SExTest),
+        TestLoader().loadTestsFromTestCase(SExciteTest),
+        TestLoader().loadTestsFromTestCase(RExciteTest),
     ])

@@ -87,7 +87,9 @@ class O(BE):
     pass
         
 class R(BE):
-    pass
+
+    def excite(self, excited = {}):
+        return {}
         
 class T(BE):
     pass
