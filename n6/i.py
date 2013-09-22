@@ -84,8 +84,10 @@ class S(BE):
         return excited
         
 class O(BE):
-    pass
-        
+    
+    def excite(self, excited = {}):
+        return self.l.excite()
+ 
 class R(BE):
 
     def excite(self, excited = {}):

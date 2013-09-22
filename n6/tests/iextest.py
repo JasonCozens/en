@@ -25,6 +25,7 @@ from i import (
     I,
     BE,
     S,
+    O,
     R,
     T,
     )
@@ -68,8 +69,11 @@ class SExciteTest(TestCase):
 
 class MockIdea():
 
-    def __init__(self):
-        pass
+    def __init__(self, excited = {}):
+        self.__excited = excited
+
+    def excite(self):
+        return self.__excited
 
 class RExciteTest(TestCase):
 
@@ -83,8 +87,21 @@ class RExciteTest(TestCase):
         # Assert.
         self.assertEqual(excited, {})
 
+class OExciteTest(TestCase):
+
+    def test_excite(self):
+        # Arrange.
+        x = MockIdea({'I()':I()})
+        y = MockIdea()
+        i = O(x,y)
+        # Act.
+        excited = i.excite()
+        # Assert.
+        self.assertEqual(excited, x.excite())
+
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(SExciteTest),
         TestLoader().loadTestsFromTestCase(RExciteTest),
+        TestLoader().loadTestsFromTestCase(OExciteTest),
     ])
