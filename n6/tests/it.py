@@ -21,18 +21,34 @@ from unittest import (
     TestLoader
     )
 
-from i import (I)
+from i import (I, S)
 
 class IT(TestCase):
 
     def test_new(self):
+        # Act
         i = I()
-        self.assertEqual(i.l, I.I)
-        self.assertEqual(i.o, I.I)
-        self.assertEqual(i.r, I.I)
+        # Assert
+        self.assertEqual(i.l, I.O)
+        self.assertEqual(i.o, I.O)
+        self.assertEqual(i.r, I.O)
+
+class ST(TestCase):
+
+    def test_new(self):
+        # Arrange
+        l = I()
+        r = I()
+        # Act
+        s = S(l, r)
+        # Assert
+        self.assertEqual(s.l, l)
+        self.assertEqual(s.o, S.O)
+        self.assertEqual(s.r, r)        
 
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(IT),
+        TestLoader().loadTestsFromTestCase(ST),
     ])
         

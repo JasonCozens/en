@@ -17,10 +17,31 @@
 #
 class I:
 
-     I = 'I'
+     O = 'I'
 
-     def __init__(self, l = I, r = I):
-         self.l = l
-         self.o = I.I
-         self.r = r
+     def __init__(self, l = O, r = O):
+         self._l = l
+         self._o = I.O
+         self._r = r
+
+     @property
+     def l(self):
+          return self._l
+
+     @property
+     def o(self):
+          return self._o
+
+     @property
+     def r(self):
+          return self._r
+         
+class S(I):
+
+     O = '!'
+
+     def __init__(self, l = I(), r = I()):
+          super(S, self).__init__(l, r)
+          self._o = S.O
+
 
