@@ -15,16 +15,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from unittest import (
-    TestSuite,
-    TextTestRunner,
-    )
+class I:
 
-import tests.it
+     I = 'I'
 
-def alltests():
-    return TestSuite([
-        tests.it.alltests(),
-        ])
+     def __init__(self, l = I, r = I):
+         self.l = l
+         self.o = I.I
+         self.r = r
 
-TextTestRunner(verbosity = 2).run(alltests())

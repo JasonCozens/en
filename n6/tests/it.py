@@ -16,15 +16,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from unittest import (
+    TestCase,
     TestSuite,
-    TextTestRunner,
+    TestLoader
     )
 
-import tests.it
+from i import (I)
+
+class IT(TestCase):
+
+    def test_new(self):
+        i = I()
+        self.assertEqual(i.l, I.I)
+        self.assertEqual(i.o, I.I)
+        self.assertEqual(i.r, I.I)
 
 def alltests():
     return TestSuite([
-        tests.it.alltests(),
-        ])
-
-TextTestRunner(verbosity = 2).run(alltests())
+        TestLoader().loadTestsFromTestCase(IT),
+    ])
+        
