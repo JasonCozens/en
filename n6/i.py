@@ -77,7 +77,8 @@ class BE(Idea):
 class S(BE):
     
     def excite(self, excited = {}):
-        return {repr(self.l):self.r}
+        excited[repr(self.l)] = self.r
+        return excited
         
 class O(BE):
     pass

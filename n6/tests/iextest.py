@@ -22,22 +22,35 @@ from unittest import (
     )
 
 from i import (
-    Idea,
+    I,
     BE,
     S,
     )
 
 class SExTest(TestCase):
 
-    def test_(self):
+    def test_excite_node(self):
         # Arrange.
-        l = Idea()
-        r = BE(Idea(),Idea())
+        l = I()
+        r = BE(I(),I())
         s = S(l,r)
         # Act.
         ex = s.excite()
         # Assert.
         self.assertEqual(ex[repr(l)], r)
+
+    def test_excite_not_in_dictionary(self):
+        # Arrange.
+        l = I()
+        r = BE(I(),I())
+        s = S(l,r)
+        particles = {repr(S(I(),I())):I()}
+        # Act.
+        ex = s.excite(particles)
+        # Assert.
+        self.assertEqual(len(ex), 2)
+        self.assertEqual(ex[repr(l)], r)
+        self.assertEqual(ex[repr(S(I(),I()))], I())
 
 def alltests():
     return TestSuite([
