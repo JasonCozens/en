@@ -16,17 +16,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from unittest import (
+    TestCase,
     TestSuite,
-    TextTestRunner,
+    TestLoader
     )
 
-import tests.it
-import tests.iextest
+from i import (
+    Idea,
+    BE,
+    S,
+    )
+
+class SExTest(TestCase):
+
+    def test_(self):
+        # Arrange.
+        l = Idea()
+        r = BE(Idea(),Idea())
+        s = S(l,r)
+        # Act.
+        ex = s.excite()
+        # Assert.
+        self.assertEqual(ex[repr(l)], r)
 
 def alltests():
     return TestSuite([
-        tests.it.alltests(),
-        tests.iextest.alltests(),
-        ])
-
-TextTestRunner(verbosity = 2).run(alltests())
+        TestLoader().loadTestsFromTestCase(SExTest),
+    ])

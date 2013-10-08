@@ -75,7 +75,9 @@ class BE(Idea):
         return type(self)(self.l.subst(expr, var), self.r.subst(expr, var))
 
 class S(BE):
-    pass
+    
+    def excite(self, excited = {}):
+        return {repr(self.l):self.r}
         
 class O(BE):
     pass
