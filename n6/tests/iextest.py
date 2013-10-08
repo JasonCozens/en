@@ -25,6 +25,7 @@ from i import (
     I,
     BE,
     S,
+    T,
     )
 
 class SExTest(TestCase):
@@ -51,6 +52,18 @@ class SExTest(TestCase):
         self.assertEqual(len(ex), 2)
         self.assertEqual(ex[repr(l)], r)
         self.assertEqual(ex[repr(S(I(),I()))], I())
+
+    def test_excite_in_dictionary(self):
+        # Arrange.
+        l = I()
+        r = BE(I(),I())
+        s = S(l,r)
+        particles = {repr(l):I()}
+        # Act.
+        ex = s.excite(particles)
+        # Assert.
+        self.assertEqual(len(ex), 1)
+        self.assertEqual(ex[repr(l)], T(r,I()))
 
 def alltests():
     return TestSuite([
