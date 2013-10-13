@@ -94,7 +94,11 @@ class R(BE):
         return {}
         
 class T(BE):
-    pass
+    
+    def excite(self, excited = {}):
+        excited = self.l.excite()
+        excited.update(self.r.excite())
+        return excited
         
 class E(BE):
     pass

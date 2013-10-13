@@ -21,14 +21,7 @@ from unittest import (
     TestLoader
     )
 
-from i import (
-    I,
-    BE,
-    S,
-    O,
-    R,
-    T,
-    )
+from i import (I, BE, S, O, R, T,)
 
 class SExciteTest(TestCase):
 
@@ -99,9 +92,24 @@ class OExciteTest(TestCase):
         # Assert.
         self.assertEqual(excited, x.excite())
 
+class TExciteTest(TestCase):
+
+    def test_disjoint_subexpressions(self):
+        # Arrange.
+        x = MockIdea({'I()':I()})
+        y = MockIdea({'R(I(),I())':I()})
+        i = T(x,y)
+        # Act.
+        excited = i.excite()
+        # Assert.
+        self.assertEqual(len(excited), 2)
+        self.assertEqual(excited['I()'], I())
+        self.assertEqual(excited['R(I(),I())'], I())
+
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(SExciteTest),
         TestLoader().loadTestsFromTestCase(RExciteTest),
         TestLoader().loadTestsFromTestCase(OExciteTest),
+        TestLoader().loadTestsFromTestCase(TExciteTest),
     ])
