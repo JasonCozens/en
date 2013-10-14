@@ -96,8 +96,13 @@ class R(BE):
 class T(BE):
     
     def excite(self, excited = {}):
-        excited = self.l.excite()
-        excited.update(self.r.excite())
+        lexcited = self.l.excite()
+        rexcited = self.r.excite()
+        excited = {}
+        for k in (lexcited.keys() & rexcited.keys()):
+             excited[k] = T(lexcited.pop(k),rexcited.pop(k))
+        excited.update(lexcited)
+        excited.update(rexcited)
         return excited
         
 class E(BE):

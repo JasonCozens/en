@@ -106,6 +106,19 @@ class TExciteTest(TestCase):
         self.assertEqual(excited['I()'], I())
         self.assertEqual(excited['R(I(),I())'], I())
 
+    def test_intersecting_subexpressions(self):
+        # Arrange.
+        x = MockIdea({'I()':I(), 'O(I(),I())':S(I(),I())})
+        y = MockIdea({'R(I(),I())':I(),'O(I(),I())':R(I(),I())})
+        i = T(x,y)
+        # Act.
+        excited = i.excite()
+        # Assert.
+        self.assertEqual(len(excited), 3)
+        self.assertEqual(excited['I()'], I())
+        self.assertEqual(excited['R(I(),I())'], I())
+        self.assertEqual(excited['O(I(),I())'], T(S(I(),I()),R(I(),I())))
+
 def alltests():
     return TestSuite([
         TestLoader().loadTestsFromTestCase(SExciteTest),
