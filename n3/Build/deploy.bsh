@@ -1,4 +1,9 @@
 #!/bin/bash
 
+sudo service asterisk stop
+
 rm -f /etc/asterisk/*
 cp asterisk/* /etc/asterisk/
+
+sudo service asterisk start
+
